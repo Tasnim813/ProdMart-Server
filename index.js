@@ -20,7 +20,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     
-    await client.connect();
+    // await client.connect();
     const database=client.db('next_db')
     const productsCollection=database.collection('products')
    
@@ -70,19 +70,19 @@ async function run() {
                 res.status(400).json({ message: error.message })
             }
         })
-        app.delete('/products/:id', async (req, res) => {
-            const { id } = req.params;
-            try {
-                const filter = { _id: new ObjectId(id) }
-                const result = await productsCollection.deleteOne(filter)
-                res.status(200).json({ success: true, result })
-            } catch (error) {
-                res.status(400).json({ message: error.message })
-            }
-        })
+        // app.delete('/products/:id', async (req, res) => {
+        //     const { id } = req.params;
+        //     try {
+        //         const filter = { _id: new ObjectId(id) }
+        //         const result = await productsCollection.deleteOne(filter)
+        //         res.status(200).json({ success: true, result })
+        //     } catch (error) {
+        //         res.status(400).json({ message: error.message })
+        //     }
+        // })
     
 
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
    
